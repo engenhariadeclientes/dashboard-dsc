@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Cobrança DSC — 05/06/2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;font-size:14px;line-height:1.5}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px}
+header{margin-bottom:24px}
+header h1{font-size:20px;font-weight:500;color:#1a1a18;margin-bottom:4px}
+header p{font-size:13px;color:#888780}
+.section-label{font-size:11px;font-weight:500;color:#888780;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+.metric{background:#eeede8;border-radius:8px;padding:14px 16px}
+.metric .lbl{font-size:11px;color:#5f5e5a;margin-bottom:5px}
+.metric .val{font-size:22px;font-weight:500;color:#1a1a18;line-height:1}
+.metric .sub{font-size:11px;color:#888780;margin-top:3px}
+.metric.green .val{color:#0F6E56}
+.metric.amber .val{color:#BA7517}
+.metric.blue .val{color:#185FA5}
+.metric.red .val{color:#A32D2D}
+.metric.teal .val{color:#0F6E56}
+hr.div{border:none;border-top:.5px solid #d3d1c7;margin:12px 0 16px}
+.tab-wrap{border:.5px solid #d3d1c7;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#fff}
+.count-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.count-chip{display:flex;align-items:center;gap:5px;font-size:12px;background:#eeede8;border-radius:8px;padding:5px 10px;cursor:pointer;border:.5px solid transparent;user-select:none}
+.count-chip .dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.count-chip.active-chip{border-color:#888780;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+thead th{background:#f5f4f0;padding:9px 10px;text-align:left;font-weight:500;font-size:11px;color:#5f5e5a;border-bottom:.5px solid #d3d1c7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+tbody td{padding:9px 10px;border-bottom:.5px solid #eeeee8;color:#1a1a18;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#f9f8f4}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.b-promessa{background:#E1F5EE;color:#085041}
+.b-comprovante{background:#E6F1FB;color:#0C447C}
+.b-follow{background:#FAEEDA;color:#633806}
+.b-andamento{background:#F1EFE8;color:#5F5E5A}
+.b-whatsapp{background:#FCEBEB;color:#791F1F}
+.b-today{background:#FAEEDA;color:#633806}
+.b-futura{background:#E6F1FB;color:#0C447C}
+.b-passado{background:#F1EFE8;color:#5F5E5A}
+.pager{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-top:.5px solid #d3d1c7;font-size:12px;color:#5f5e5a;background:#fff}
+.pager button{font-size:11px;padding:4px 12px;border-radius:6px;border:.5px solid #d3d1c7;background:#fff;color:#5f5e5a;cursor:pointer}
+.pager button:disabled{opacity:.4;cursor:default}
+.pager button:not(:disabled):hover{background:#f5f4f0}
+.footer{font-size:11px;color:#888780;margin-top:16px;padding-bottom:8px}
+@media(max-width:700px){
+  .grid4,.grid5{grid-template-columns:repeat(2,1fr)}
+  table{font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Dashboard de Cobrança Condominial — DSC</h1>
+  <p>Gerado em 05/06/2026 · Fonte: BotConversa audience_0406 + Planilha de controle</p>
+</header>
+
+<p class="section-label">Inadimplência geral</p>
+<div class="grid4">
+  <div class="metric"><p class="lbl">Base BotConversa</p><p class="val">620</p><p class="sub">Total contatos</p></div>
+  <div class="metric amber"><p class="lbl">Cobrança ativa</p><p class="val">156</p><p class="sub">1–2 parcelas NR</p></div>
+  <div class="metric red"><p class="lbl">Backoffice</p><p class="val">265</p><p class="sub">3+ parcelas NR</p></div>
+  <div class="metric blue"><p class="lbl">Abordados pela Ana</p><p class="val">59</p><p class="sub">Audience_0406</p></div>
+</div>
+
+<hr class="div">
+<p class="section-label">Resultados dos atendimentos</p>
+<div class="grid5">
+  <div class="metric green"><p class="lbl">Promessas</p><p class="val">18</p><p class="sub">Ana_boleto</p></div>
+  <div class="metric blue"><p class="lbl">Comprovante enviado</p><p class="val">9</p><p class="sub">Transfer_Humano</p></div>
+  <div class="metric amber"><p class="lbl">Aguard. follow-up</p><p class="val">5</p><p class="sub">Pausa_FUP</p></div>
+  <div class="metric"><p class="lbl">Em andamento</p><p class="val">24</p><p class="sub">Sem resolução ainda</p></div>
+  <div class="metric red"><p class="lbl">WhatsApp inválido</p><p class="val">3</p><p class="sub">Sem contato</p></div>
+</div>
+
+<hr class="div">
+<p class="section-label">Promessas — taxa de conversão acumulada</p>
+<div class="grid4">
+  <div class="metric"><p class="lbl">Promessas totais</p><p class="val">20</p><p class="sub">Planilha de controle</p></div>
+  <div class="metric green"><p class="lbl">Pagas</p><p class="val">13</p><p class="sub">Saíram da base</p></div>
+  <div class="metric amber"><p class="lbl">Aguardando</p><p class="val">7</p><p class="sub">R$ 2.157,76</p></div>
+  <div class="metric teal"><p class="lbl">Taxa conversão</p><p class="val">65%</p><p class="sub">13 de 20 honradas</p></div>
+</div>
+
+<hr class="div">
+<p class="section-label">Todos os contatos atendidos (59)</p>
+
+<div class="count-row" id="chips">
+  <div class="count-chip active-chip" data-filter="todos" onclick="applyFilter('todos')"><span class="dot" style="background:#888780"></span>Todos (59)</div>
+  <div class="count-chip" data-filter="Promessa" onclick="applyFilter('Promessa')"><span class="dot" style="background:#1D9E75"></span>Promessa (18)</div>
+  <div class="count-chip" data-filter="Comprovante" onclick="applyFilter('Comprovante')"><span class="dot" style="background:#185FA5"></span>Comprovante (9)</div>
+  <div class="count-chip" data-filter="Follow-up" onclick="applyFilter('Follow-up')"><span class="dot" style="background:#BA7517"></span>Follow-up (5)</div>
+  <div class="count-chip" data-filter="Andamento" onclick="applyFilter('Andamento')"><span class="dot" style="background:#888780"></span>Andamento (24)</div>
+  <div class="count-chip" data-filter="WhatsApp" onclick="applyFilter('WhatsApp')"><span class="dot" style="background:#A32D2D"></span>WA inválido (3)</div>
+</div>
+
+<div class="tab-wrap">
+<table>
+<thead>
+  <tr>
+    <th style="width:23%">Cliente</th>
+    <th style="width:14%">Condomínio</th>
+    <th style="width:6%">Bl.</th>
+    <th style="width:6%">Ap.</th>
+    <th style="width:13%">Status</th>
+    <th style="width:12%">Vencimento</th>
+    <th style="width:10%;text-align:right">Valor taxa</th>
+    <th style="width:16%">Observação</th>
+  </tr>
+</thead>
+<tbody id="tbl-body"></tbody>
+</table>
+<div class="pager">
+  <span id="pager-info">–</span>
+  <div style="display:flex;gap:6px">
+    <button id="btn-prev" onclick="changePage(-1)" disabled>← Anterior</button>
+    <button id="btn-next" onclick="changePage(1)">Próxima →</button>
+  </div>
+</div>
+</div>
+
+<p class="footer">DSC Administração · Cobrança IA Ana · Condomínios: Alegria, Villas Flores, Anita Garibaldi, Porto Siena, Maggiore</p>
+</div>
+
+<script>
+const DATA=[
+["Alice Gabriely Soares Padilha","Alegria","06","404","Promessa","01/06 (passado)","R$ 383,38","Pag. 01/06/2026"],
+["Ludmila Menezes De Freitas","Alegria","10","302","Promessa","08/06","R$ 352,67","Programou 08/06"],
+["Maria Vitoria Rodrigues De Oliveira","Alegria","10","401","Promessa","05/06","R$ 412,55","Aguarda 2a via"],
+["Solange Hesper Da Silva","Alegria","03","503","Promessa","30/05 (passado)","R$ 291,89","Pag. 30/05"],
+["Leticia Padilha Da Silva","Alegria","08","404","Promessa","29/05 (passado)","R$ 397,15","Pag. 29/05"],
+["Gabriela Vitoria Dornelles","Alegria","16","401","Promessa","02/06 (passado)","R$ 343,98","Pag. 02/06"],
+["Adriano Capelao Da Silva","Villas Flores","C","309","Promessa","05/06","R$ 527,44","Programou 05/06"],
+["Roberta Azambuja De Freitas","Villas Flores","F","421","Promessa","05/06","R$ 609,64","Programou 05/06"],
+["Ashley Vitoria Dos Santos","Villas Flores","M","151","Promessa","09/06","R$ 494,72","Programou 09/06"],
+["David Ribeiro Tonato","Villas Flores","N","455","Promessa","05/06","R$ 418,92","Programou 05/06"],
+["Giovana De Souza Oliveira","Anita Garibaldi","B","404","Promessa","02/06 (passado)","R$ 459,19","Pag. 02/06"],
+["Joseph Paul Castillo Campos","Anita Garibaldi","L","104","Promessa","02/06 (passado)","R$ 309,18","Pag. 02/06"],
+["Silvana Da Silva Portela","Anita Garibaldi","K","302","Promessa","05/06","R$ 309,18","Programou 05/06"],
+["Elisa Jael De Souza","Anita Garibaldi","L","302","Promessa","05/06","R$ 309,18","Programou 05/06"],
+["Daniela Del Valle Padron","Porto Siena","03","203","Promessa","06/06","R$ 507,41","Programou 06/06"],
+["Lucas Rodrigues Da Silva","Porto Siena","09","401","Promessa","06/06","R$ 364,70","Programou 06/06"],
+["Ingrid De Matos Pires","Porto Siena","16","304","Promessa","10/06","R$ 364,23","Programou 10/06"],
+["Jessica Oliveira De Brito","Anita Garibaldi","E","501","Promessa","10/06","R$ 309,18","Programou 10/06"],
+["Beatriz Cassenott Terres","Alegria","11","501","Comprovante","—","R$ 372,82","Comprov. Pix abr+mai"],
+["Zulmiris Del Valle Hernandes","Alegria","03","504","Comprovante","—","R$ 447,05","Comprov. pago 28/05"],
+["Vinicius Rasche","Alegria","05","501","Comprovante","—","R$ 401,88","Confirmou, enviou comprov."],
+["Jessica Araujo Cezar","Alegria","07","401","Comprovante","—","R$ 374,48","Enviou comprovante"],
+["Vitoria Terezinha Pires","Alegria","08","504","Comprovante","—","R$ 286,28","Comprov. mes 05"],
+["Talita Tavares Lopes","Alegria","01","502","Comprovante","—","R$ 373,39","Pediu baixa"],
+["Silvia Regina Camargo Telles","Villas Flores","B","408","Comprovante","—","R$ 426,63","Enviou comprovante"],
+["Jeferson Prestes Vargas","Villas Flores","F","322","Comprovante","—","R$ 553,55","Enviou comprovante"],
+["Eduardo Carneiro Souza","Anita Garibaldi","G","504","Comprovante","—","R$ 309,18","Comprovou pgto 29/05"],
+["Luan Jardel Da Silva","Alegria","08","402","Follow-up","—","R$ 439,67","Solicitacao regularizacao"],
+["Kendra Lorhana Dos Santos","Alegria","14","302","Follow-up","ate 05/06","R$ 371,26","Informa ate 05/06"],
+["Lucilene Alves Procopio","Alegria","07","201","Follow-up","5o dia util","R$ 354,17","Paga no 5o dia util"],
+["Fernando Rafael Moreira","Alegria","13","504","Follow-up","31/05","R$ 395,34","Pediu boleto p/ 31/05"],
+["Melanie Silva De Mello Padilha","Alegria","01","102","Follow-up","prox. seg.","R$ 286,58","Paga segunda-feira"],
+["Guilherme Martins Dos Santos","Alegria","05","302","WhatsApp","—","R$ 674,88","WhatsApp invalido"],
+["Simone Da Silva Lopes","Villas Flores","M","150","WhatsApp","—","R$ 480,40","WhatsApp invalido"],
+["Gabrielly Dupin Luzardo","Porto Siena","18","102","WhatsApp","—","R$ 398,94","WhatsApp invalido"],
+["Peterson Souza De Paula","Alegria","10","104","Andamento","—","R$ 301,03","Em abordagem"],
+["Daniele Dejanira De Souza","Alegria","14","503","Andamento","—","R$ 290,65","Em abordagem"],
+["William Jonathas Da Silva","Alegria","04","303","Andamento","—","R$ 354,56","Enviara comprovante"],
+["Rafaella Guimaraes Torres","Alegria","04","304","Andamento","—","R$ 332,77","Pediu valor atualizado"],
+["Bianca Dos Santos Correa","Alegria","09","201","Andamento","—","R$ 444,39","Aguarda receber"],
+["Caroline Andrade Leal","Alegria","09","202","Andamento","—","R$ 374,58","Em abordagem"],
+["Marilise Demetrio Mieres","Alegria","08","104","Andamento","—","R$ 360,93","Em abordagem"],
+["Jean Carlos Pereira","Alegria","02","201","Andamento","—","R$ 463,86","Em abordagem"],
+["KATIA NUNES VIEIRA","Alegria","04","101","Andamento","—","R$ 296,06","Localizara comprovante"],
+["Jonatha Rodrigues","Alegria","09","303","Andamento","—","R$ 308,97","1 parcela, conduz pgto"],
+["Rosenaide Mendes Alves","Villas Flores","H","232","Andamento","dia 8","R$ 389,00","Recebe dia 8"],
+["Juliano Dos Santos Brito","Villas Flores","J","140","Andamento","—","R$ 489,52","Em abordagem"],
+["Julia Rodrigues Schimitz","Villas Flores","L","347","Andamento","—","R$ 504,55","Em abordagem"],
+["Keymili Alexsandra De Oliveira","Villas Flores","L","348","Andamento","—","R$ 391,43","Em abordagem"],
+["Leidys Beatriz Maza Blanco","Anita Garibaldi","H","303","Andamento","—","R$ 309,18","Em abordagem"],
+["Roberson Angra Santana","Anita Garibaldi","H","402","Andamento","—","R$ 309,18","Em abordagem"],
+["Tirzo Antonio Henriquez","Anita Garibaldi","I","204","Andamento","—","R$ 309,18","Desempregado, quer parcel."],
+["Joao Vitor Binello","Porto Siena","02","504","Andamento","—","R$ 364,23","Em abordagem"],
+["Francisco Laelson De Sousa","Porto Siena","07","104","Andamento","—","R$ 364,23","Em abordagem"],
+["Paola Lucero Del Rio","Porto Siena","10","403","Andamento","—","R$ 381,05","Em abordagem"],
+["Jandira Maria Ravanei","Porto Siena","17","101","Andamento","—","R$ 489,72","Em abordagem"],
+["Iago Farias Da Silva","Porto Siena","18","403","Andamento","—","R$ 504,45","Em abordagem"],
+["Jonas Anilton De Camargo","Porto Siena","18","404","Andamento","—","R$ 381,05","Em abordagem"],
+["Fransileia Paida","Porto Siena","04","102","Andamento","—","R$ 372,64","Confirmou identidade"],
+];
+const BADGE={"Promessa":"b-promessa","Comprovante":"b-comprovante","Follow-up":"b-follow","Andamento":"b-andamento","WhatsApp":"b-whatsapp"};
+const BADGE_LABEL={"Promessa":"Promessa","Comprovante":"Comprovante","Follow-up":"Follow-up","Andamento":"Em andamento","WhatsApp":"WA invalido"};
+function vencBadge(v){
+  if(!v||v==="—") return '<span style="color:#888780">—</span>';
+  if(v.includes("05/06")) return `<span class="badge b-today">${v}</span>`;
+  if(v.includes("passado")) return `<span class="badge b-passado">${v}</span>`;
+  if(/\/06|dia 8|seg\.|util|31\/05/.test(v)) return `<span class="badge b-futura">${v}</span>`;
+  return `<span style="color:#5f5e5a">${v}</span>`;
+}
+let currentFilter="todos",currentPage=1;
+const PAGE_SIZE=20;
+function getFiltered(){
+  if(currentFilter==="todos") return DATA;
+  return DATA.filter(r=>r[4]===currentFilter);
+}
+function renderTable(){
+  const rows=getFiltered();
+  const start=(currentPage-1)*PAGE_SIZE;
+  const end=Math.min(start+PAGE_SIZE,rows.length);
+  document.getElementById("tbl-body").innerHTML=rows.slice(start,end).map(r=>`<tr><td title="${r[0]}">${r[0]}</td><td>${r[1]}</td><td style="text-align:center">${r[2]}</td><td style="text-align:center">${r[3]}</td><td><span class="badge ${BADGE[r[4]]}">${BADGE_LABEL[r[4]]}</span></td><td>${vencBadge(r[5])}</td><td style="text-align:right;font-weight:500">${r[6]}</td><td title="${r[7]}" style="color:#5f5e5a">${r[7]}</td></tr>`).join("");
+  document.getElementById("pager-info").textContent=`${start+1}–${end} de ${rows.length}`;
+  document.getElementById("btn-prev").disabled=currentPage===1;
+  document.getElementById("btn-next").disabled=end>=rows.length;
+}
+function applyFilter(f){
+  currentFilter=f;currentPage=1;
+  document.querySelectorAll(".count-chip").forEach(c=>c.classList.toggle("active-chip",c.dataset.filter===f));
+  renderTable();
+}
+function changePage(d){currentPage+=d;renderTable();}
+renderTable();
+</script>
+</body>
+</html>
