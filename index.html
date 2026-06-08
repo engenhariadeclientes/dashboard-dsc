@@ -124,9 +124,49 @@ tbody tr.total-row td{background:#f5f4f0;font-weight:500;border-top:.5px solid #
   </table>
 </div>
 
-<!-- 3. Resultados Ana -->
+<!-- 3. Funil de conversão -->
 <hr class="div">
-<p class="section-label">3 · Resultados Ana — 2º nível humano (backoffice)</p>
+<p class="section-label">3 · Funil de conversão — Cobrança IA</p>
+<div class="grid4" style="margin-bottom:16px">
+  <div class="metric blue">
+    <p class="lbl">Base IA (NR ≤ 2)</p>
+    <p class="val" id="funil-base">—</p>
+    <p class="sub">devedores na cobrança IA</p>
+  </div>
+  <div class="metric">
+    <p class="lbl">Contactados</p>
+    <p class="val" id="funil-contactados">—</p>
+    <p class="sub" id="funil-contactados-pct">—</p>
+  </div>
+  <div class="metric green">
+    <p class="lbl">Promessas</p>
+    <p class="val" id="funil-promessas">21</p>
+    <p class="sub" id="funil-promessas-pct">—</p>
+  </div>
+  <div class="metric teal">
+    <p class="lbl">Pagos confirmados</p>
+    <p class="val">13</p>
+    <p class="sub" id="funil-pagos-pct">62% das promessas</p>
+  </div>
+</div>
+<div style="background:#fff;border:.5px solid #d3d1c7;border-radius:10px;padding:14px 16px;margin-bottom:20px">
+  <div style="display:flex;align-items:center;gap:0;height:28px;border-radius:6px;overflow:hidden" id="funil-bar">
+    <div style="background:#185FA5;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;min-width:40px" id="fb-base">—</div>
+    <div style="background:#1D9E75;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;min-width:40px" id="fb-contact">—</div>
+    <div style="background:#BA7517;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;min-width:40px" id="fb-prom">21</div>
+    <div style="background:#0F6E56;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;min-width:40px" id="fb-pago">13</div>
+  </div>
+  <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#5f5e5a"><div style="width:8px;height:8px;border-radius:2px;background:#185FA5"></div>Base IA</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#5f5e5a"><div style="width:8px;height:8px;border-radius:2px;background:#1D9E75"></div>Contactados</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#5f5e5a"><div style="width:8px;height:8px;border-radius:2px;background:#BA7517"></div>Promessas</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#5f5e5a"><div style="width:8px;height:8px;border-radius:2px;background:#0F6E56"></div>Pagos confirmados</div>
+  </div>
+</div>
+
+<!-- 4. Resultados Ana -->
+<hr class="div">
+<p class="section-label">4 · Resultados Ana — BotConversa</p>
 <div class="grid4" id="ana-metrics">
   <div class="metric blue"><p class="lbl">Contatos no BotConversa</p><p class="val" id="m-total">—</p><p class="sub">base total</p></div>
   <div class="metric"><p class="lbl">Promessas registradas</p><p class="val" id="m-promessa">—</p><p class="sub">Bem_sucedida</p></div>
@@ -246,6 +286,13 @@ async function carregarAudiencia(){
     document.getElementById("m-comprovante").textContent = data.metricas.comprovante;
     document.getElementById("m-followup").textContent = data.metricas.follow_up;
 
+    // Funil — contactados
+    const contactados = data.ativos;
+    document.getElementById("funil-contactados").textContent = contactados;
+    document.getElementById("fb-contact").textContent = contactados;
+    document.getElementById("funil-contactados-pct").textContent =
+      `${Math.round(contactados/data.total_bc*100)}% da base total`;
+
     // Filtra só os relevantes (com status != Andamento OU com resumo preenchido)
     DATA_BC = data.contatos.filter(c =>
       c.status !== "Andamento" ||
@@ -279,6 +326,17 @@ function renderSituacao(data){
   const totalBO  = data.reduce((s,r) => s + r.total_backoffice, 0);
   document.getElementById("total-devedores").textContent = totalDev;
   document.getElementById("total-sub").textContent = `${totalIA} IA · ${totalBO} backoffice`;
+
+  // Funil de conversão
+  const PROMESSAS = 21, PAGOS = 13;
+  document.getElementById("funil-base").textContent = totalIA;
+  document.getElementById("fb-base").textContent = totalIA;
+  document.getElementById("fb-base").style.flex = String(totalIA);
+  document.getElementById("fb-contact").style.flex = String(469);
+  document.getElementById("fb-prom").style.flex = String(PROMESSAS * 3);
+  document.getElementById("fb-pago").style.flex = String(PAGOS * 3);
+  document.getElementById("funil-promessas-pct").textContent =
+    totalIA > 0 ? `${Math.round(PROMESSAS/totalIA*100)}% da base IA` : "—";
 
   const grid = document.getElementById("cond-grid");
   grid.innerHTML = data.map(r => {
