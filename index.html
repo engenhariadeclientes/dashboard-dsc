@@ -55,7 +55,8 @@ table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 thead th{background:#f5f4f0;padding:9px 10px;text-align:left;font-weight:500;font-size:11px;color:#5f5e5a;border-bottom:.5px solid #d3d1c7;white-space:nowrap}
 tbody td{padding:9px 10px;border-bottom:.5px solid #eeeee8;color:#1a1a18;vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:#f9f8f4}
+tbody tr:hover td{background:#f9f8f4;cursor:pointer}
+tbody tr.expandida td{white-space:normal!important;background:#f0f8f4}
 tbody tr.total-row td{background:#f5f4f0;font-weight:500;border-top:.5px solid #d3d1c7}
 .badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;white-space:nowrap}
 .b-promessa{background:#E1F5EE;color:#085041}
@@ -65,6 +66,7 @@ tbody tr.total-row td{background:#f5f4f0;font-weight:500;border-top:.5px solid #
 .b-whatsapp{background:#FCEBEB;color:#791F1F}
 .b-acordo{background:#FAEEDA;color:#633806}
 .b-critico{background:#FCEBEB;color:#791F1F}
+.b-quebrada{background:#FCEBEB;color:#791F1F}
 .mini-bar{height:4px;border-radius:2px;background:#eeede8;overflow:hidden;display:flex;margin-top:3px}
 .pager{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-top:.5px solid #d3d1c7;font-size:12px;color:#5f5e5a;background:#fff}
 .pager button{font-size:11px;padding:4px 12px;border-radius:6px;border:.5px solid #d3d1c7;background:#fff;color:#5f5e5a;cursor:pointer}
@@ -145,6 +147,7 @@ tbody tr.total-row td{background:#f5f4f0;font-weight:500;border-top:.5px solid #
     <select id="f-status" onchange="applyFilters()">
       <option value="">Todos</option>
       <option>Promessa</option>
+      <option>Prom. Quebrada</option>
       <option>Comprovante</option>
       <option>Follow-up</option>
       <option>Acordo</option>
@@ -208,7 +211,8 @@ function nomeAbrev(c){ return NOMES[c] || c; }
 const BADGE = {
   "Promessa":"b-promessa","Comprovante":"b-comprovante",
   "Follow-up":"b-follow","Acordo":"b-acordo",
-  "Andamento":"b-andamento","Crítico":"b-critico","Não proprietário":"b-andamento"
+  "Andamento":"b-andamento","Crítico":"b-critico",
+  "Não proprietário":"b-andamento","Prom. Quebrada":"b-quebrada"
 };
 
 let DATA_BC = [];
@@ -345,16 +349,16 @@ function renderTable(){
     : rows.slice(start,end).map(r => {
         const badge = BADGE[r.status] || "b-andamento";
         const cond  = nomeAbrev(r.condominio);
-        const resumo = (r.resumo || r.motivo_atraso || "—").substring(0,60);
+        const resumo = r.resumo || r.motivo_atraso || "—";
         const promessa = r.data_promessa || "—";
-        return `<tr>
-          <td title="${r.nome}">${r.nome}</td>
-          <td title="${cond}">${cond}</td>
+        return `<tr onclick="this.classList.toggle('expandida')" style="cursor:pointer">
+          <td>${r.nome}</td>
+          <td>${cond}</td>
           <td style="text-align:center">${r.bloco||"—"}</td>
           <td style="text-align:center">${r.unidade||"—"}</td>
           <td><span class="badge ${badge}">${r.status}</span></td>
           <td style="color:${r.data_promessa?'#0F6E56':'#888780'}">${promessa}</td>
-          <td title="${r.resumo||''}" style="color:#5f5e5a">${resumo}</td>
+          <td style="color:#5f5e5a">${resumo}</td>
         </tr>`;
       }).join("");
   document.getElementById("pager-info").textContent = rows.length===0 ? "0 registros" : `${start+1}–${end} de ${rows.length}`;
