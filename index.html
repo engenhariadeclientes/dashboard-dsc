@@ -156,8 +156,13 @@ tbody tr.total-row td{background:#f5f4f0;font-weight:500;border-top:.5px solid #
     </select>
   </div>
   <div class="filter-group">
-    <label>Bloco</label>
-    <select id="f-bloco" onchange="applyFilters()"><option value="">Todos</option></select>
+    <label>Data promessa</label>
+    <select id="f-data" onchange="applyFilters()"><option value="">Todas</option></select>
+  </div>
+  <div class="filter-group">
+    <label>Cliente</label>
+    <input id="f-cliente" type="text" placeholder="Buscar nome..." oninput="applyFilters()"
+      style="font-size:12px;padding:5px 8px;border-radius:6px;border:.5px solid #d3d1c7;min-width:140px;color:#1a1a18">
   </div>
   <button class="btn-reset" onclick="resetFilters()">Limpar filtros</button>
 </div>
@@ -254,9 +259,9 @@ async function carregarAudiencia(){
     const fCond = document.getElementById("f-cond");
     conds.forEach(c => { const o = document.createElement("option"); o.value = c; o.textContent = c; fCond.appendChild(o); });
 
-    const blocos = [...new Set(DATA_BC.map(c => c.bloco).filter(Boolean))].sort();
-    const fBloco = document.getElementById("f-bloco");
-    blocos.forEach(b => { const o = document.createElement("option"); o.value = b; o.textContent = b; fBloco.appendChild(o); });
+    const datas = [...new Set(DATA_BC.map(c => c.data_promessa).filter(Boolean))].sort();
+    const fData = document.getElementById("f-data");
+    datas.forEach(d => { const o = document.createElement("option"); o.value = d; o.textContent = d; fData.appendChild(o); });
 
     renderTable();
   } catch(e){
@@ -328,13 +333,15 @@ function renderSituacao(data){
 }
 
 function getFiltered(){
-  const cond   = document.getElementById("f-cond").value;
-  const status = document.getElementById("f-status").value;
-  const bloco  = document.getElementById("f-bloco").value;
+  const cond    = document.getElementById("f-cond").value;
+  const status  = document.getElementById("f-status").value;
+  const data    = document.getElementById("f-data").value;
+  const cliente = document.getElementById("f-cliente").value.toLowerCase();
   return DATA_BC.filter(r => {
-    if(cond   && nomeAbrev(r.condominio) !== cond)   return false;
-    if(status && r.status !== status)                 return false;
-    if(bloco  && r.bloco !== bloco)                   return false;
+    if(cond    && nomeAbrev(r.condominio) !== cond)        return false;
+    if(status  && r.status !== status)                     return false;
+    if(data    && r.data_promessa !== data)                return false;
+    if(cliente && !r.nome.toLowerCase().includes(cliente)) return false;
     return true;
   });
 }
@@ -368,7 +375,8 @@ function renderTable(){
 
 function applyFilters(){ currentPage=1; renderTable(); }
 function resetFilters(){
-  ["f-cond","f-status","f-bloco"].forEach(id => document.getElementById(id).value="");
+  ["f-cond","f-status","f-data"].forEach(id => document.getElementById(id).value="");
+  document.getElementById("f-cliente").value = "";
   currentPage=1; renderTable();
 }
 function changePage(d){ currentPage+=d; renderTable(); }
