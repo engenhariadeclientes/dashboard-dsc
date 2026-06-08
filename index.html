@@ -286,10 +286,11 @@ async function carregarAudiencia(){
     document.getElementById("m-comprovante").textContent = data.metricas.comprovante;
     document.getElementById("m-followup").textContent = data.metricas.follow_up;
 
-    // Funil — contactados
-    const contactados = data.ativos;
+    // Funil — contactados = só quem tem tag Em_atendimento
+    const contactados = data.contatos.filter(c => c.tags.includes("Em_atendimento")).length;
     document.getElementById("funil-contactados").textContent = contactados;
     document.getElementById("fb-contact").textContent = contactados;
+    document.getElementById("fb-contact").style.flex = String(contactados);
     document.getElementById("funil-contactados-pct").textContent =
       `${Math.round(contactados/data.total_bc*100)}% da base total`;
 
@@ -332,7 +333,6 @@ function renderSituacao(data){
   document.getElementById("funil-base").textContent = totalIA;
   document.getElementById("fb-base").textContent = totalIA;
   document.getElementById("fb-base").style.flex = String(totalIA);
-  document.getElementById("fb-contact").style.flex = String(469);
   document.getElementById("fb-prom").style.flex = String(PROMESSAS * 3);
   document.getElementById("fb-pago").style.flex = String(PAGOS * 3);
   document.getElementById("funil-promessas-pct").textContent =
